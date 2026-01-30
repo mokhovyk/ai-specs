@@ -1,0 +1,62 @@
+---
+description: TypeScript and React coding standards
+globs: **/*.{ts,tsx}
+alwaysApply: false
+---
+
+# TypeScript Standards
+
+## Component Definitions
+
+```typescript
+// ❌ BAD
+const Button: React.FC<ButtonProps> = ({ label }) => { ... }
+
+// ✅ GOOD
+const Button = (props: ButtonProps) => { ... }
+```
+
+## Type vs Interface
+
+Prefer `type` over `interface` unless extension is required:
+
+```typescript
+// ❌ BAD
+interface UserData { name: string; }
+
+// ✅ GOOD
+type UserData = { name: string }
+```
+
+## Function Declarations
+
+Use `function` for top-level helpers, arrows for inner scopes:
+
+```typescript
+// ✅ Top-level
+function formatDate(date: Date) {
+  const format = (d: Date) => d.toISOString()
+  return format(date)
+}
+```
+
+## Early Returns
+
+Prefer early returns over `else`:
+
+```typescript
+// ❌ BAD
+function getStatus(user: User) {
+  if (user.isActive) {
+    return 'active'
+  } else {
+    return 'inactive'
+  }
+}
+
+// ✅ GOOD
+function getStatus(user: User) {
+  if (user.isActive) return 'active'
+  return 'inactive'
+}
+```

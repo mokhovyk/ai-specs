@@ -6,11 +6,33 @@ A structured repository for AI specifications, including prompts, agents, rules,
 
 ```
 ai-specs/
-├── skills/           # Reusable AI skill definitions
-├── prompts/          # System and user prompts (planned)
-├── agents/           # Agent configurations (planned)
-└── rules/            # Behavioral rules and constraints (planned)
+├── agents/           # AI persona and behavior definitions
+├── prompts/          # User prompt templates for common tasks
+├── rules/            # Behavioral rules and constraints
+└── skills/           # Reusable AI skill definitions
 ```
+
+## Agents
+
+Agent definitions configure how an AI assistant behaves. Each file defines a persona with objectives, constraints, and output format.
+
+| Agent | Purpose |
+|-------|---------|
+| `code-assistant.md` | General TypeScript/React coding tasks |
+| `code-reviewer.md` | Pull request review with prioritized feedback |
+| `refactor-agent.md` | Safe, incremental code improvements |
+| `documentation.md` | Technical writing and doc generation |
+
+## Prompts
+
+User prompt templates for common task types. Copy and fill in the blanks.
+
+| Template | Use When |
+|----------|----------|
+| `feature-request.md` | Implementing new functionality |
+| `bug-fix.md` | Diagnosing and fixing issues |
+| `migration.md` | Upgrading dependencies or patterns |
+| `review-request.md` | Requesting code review |
 
 ## Skills
 
@@ -27,19 +49,28 @@ Each `SKILL.md` file contains:
 5. **Operational Guidance** — Decision-making heuristics
 6. **Deliverables** — Expected outputs
 
+## Rules
+
+Rules define behavioral constraints applied to specific file types or contexts. Stored as `.mdc` files with frontmatter specifying glob patterns.
+
+| Rule | Applies To |
+|------|------------|
+| `typescript-standards.mdc` | `**/*.{ts,tsx}` |
 
 ## Usage
 
-Reference skills from your AI assistant's configuration or invoke them directly when the trigger conditions match.
+Reference specs from your AI assistant's configuration or invoke them directly when trigger conditions match.
 
 **Cursor IDE:** Add the `skills/` directory to your agent skills configuration so the assistant can discover and follow them automatically.
 
 ## Contributing
 
-1. Create a new folder under `skills/` with a descriptive kebab-case name
-2. Add a `SKILL.md` following the format above
-3. Keep instructions deterministic and non-interactive where possible
-4. Include validation steps and expected deliverables
+1. **Agents** — Add a new `.md` file under `agents/`
+2. **Prompts** — Add a new `.md` file under `prompts/`
+3. **Skills** — Create a folder under `skills/` with a `SKILL.md` file
+4. **Rules** — Add a `.mdc` file under `rules/` with appropriate globs
+
+Keep instructions deterministic and non-interactive where possible. Include validation steps and expected deliverables.
 
 ## License
 
