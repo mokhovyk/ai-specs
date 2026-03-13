@@ -73,6 +73,7 @@ digraph tdd_cycle {
 Write one minimal test showing what should happen.
 
 <Good>
+    
 ```typescript
 test('retries failed operations 3 times', async () => {
   let attempts = 0;
@@ -88,10 +89,12 @@ test('retries failed operations 3 times', async () => {
   expect(attempts).toBe(3);
 });
 ```
+
 Clear name, tests real behavior, one thing
 </Good>
 
 <Bad>
+    
 ```typescript
 test('retry works', async () => {
   const mock = jest.fn()
@@ -132,6 +135,7 @@ Confirm:
 Write simplest code to pass the test.
 
 <Good>
+
 ```typescript
 async function retryOperation<T>(fn: () => Promise<T>): Promise<T> {
   for (let i = 0; i < 3; i++) {
@@ -148,6 +152,7 @@ Just enough to pass
 </Good>
 
 <Bad>
+
 ```typescript
 async function retryOperation<T>(
   fn: () => Promise<T>,
